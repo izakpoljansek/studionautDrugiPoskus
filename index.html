@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F9FAFC;
+        }
+
+        #header {
+            background-color: #ffffff;
+            color: #909193;
+            padding: 10px;
+            text-align: center;
+            font-weight:100;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #header img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        #name {
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #image-container {
+            text-align: center;
+        }
+
+        #checkin-image {
+            width: 300px; /* Prilagodite velikost slike po potrebi */
+        }
+        
+        #footer {
+        background-color: #ffffff;
+        color: #909193;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 100px; /* Adjust the value to move the footer higher */
+        width: 100%;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <img src="arrow.jpg" alt="Arrow" />
+    <h1>Rezultati iskanja</h1>
+</div>
+
+<div id="name">
+    <p style="color: #909193;">Izak Poljanšek</p>
+</div>
+
+<div id="image-container">
+    <img id="checkin-image" src="checkin.jpg" alt="Check-In Image">
+</div>
+
+<div id="footer">
+    <p style="color: #70A233;">CHECK-IN uspešen!</p>
+    <p>Plezanje: <span id="current-time"></span></p>
+</div>
+
+<script>
+    // JavaScript za prikaz trenutnega časa v #current-time elementu
+    function updateClock() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+
+        // Dodajanje ničle pred številko, če je manjša od 10
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+
+        var currentTimeString = hours + ":" + minutes;
+
+        // Izračunaj uro čez dve uri
+        var futureTime = new Date(currentTime.getTime() + 2 * 60 * 60 * 1000);
+        var futureHours = futureTime.getHours();
+        var futureMinutes = futureTime.getMinutes();
+
+        // Dodajanje ničle pred številko, če je manjša od 10
+        futureHours = (futureHours < 10 ? "0" : "") + futureHours;
+        futureMinutes = (futureMinutes < 10 ? "0" : "") + futureMinutes;
+
+        var futureTimeString = futureHours + ":" + futureMinutes;
+
+        // Prikazi obe uri
+        var timeString = currentTimeString + " - " + futureTimeString;
+        document.getElementById("current-time").innerHTML = timeString;
+
+    }
+
+    // Zaženemo funkcijo ob nalaganju strani
+    window.onload = function () {
+        updateClock();
+    };
+</script>
+
+
+</body>
+</html>
